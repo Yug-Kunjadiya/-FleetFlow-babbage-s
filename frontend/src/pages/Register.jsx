@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Settings, MapPin, Shield, DollarSign, Truck, User, Mail, Lock, Eye, EyeOff, CheckCircle, ArrowLeft, ArrowRight } from 'lucide-react'
-import api from '@/services/api'
 import { useAuth } from '@/context/AuthContext'
 
 const ROLES = [
@@ -53,7 +52,7 @@ const ROLES = [
 
 export default function Register() {
   const navigate = useNavigate()
-  const { login: authLogin } = useAuth()
+  const { register: authRegister } = useAuth()
 
   const [step, setStep] = useState(1)           // 1 = choose role, 2 = fill details
   const [selectedRole, setSelectedRole] = useState(null)
@@ -62,7 +61,6 @@ export default function Register() {
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const role = ROLES.find(r => r.id === selectedRole)
 
@@ -88,43 +86,17 @@ export default function Register() {
     setLoading(true)
     setError('')
     try {
-      const res = await api.post('/auth/register', {
-        name: form.name.trim(),
-        email: form.email.trim().toLowerCase(),
-        password: form.password,
-        role: selectedRole
-      })
-      if (res.data.token) {
-        localStorage.setItem('token', res.data.token)
-        // auto-login after registration
-        await authLogin(form.email.trim().toLowerCase(), form.password)
+      const result = await authRegister(form.name.trim(), form.email.trim().toLowerCase(), form.password, selectedRole)
+      if (result.success) {
         navigate('/')
       } else {
-        setSuccess(true)
+        setError(result.message || 'Registration failed. Please try again.')
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed. Please try again.')
+    } catch {
+      setError('Registration failed. Please try again.')
     } finally {
       setLoading(false)
     }
-  }
-
-  if (success) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-md w-full text-center space-y-4">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-            <CheckCircle className="w-8 h-8 text-green-600" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900">Account Created!</h2>
-          <p className="text-gray-500">Your <span className="font-semibold text-gray-700">{selectedRole}</span> account has been created successfully.</p>
-          <button onClick={() => navigate('/login')}
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold hover:opacity-90 transition mt-4">
-            Go to Login
-          </button>
-        </div>
-      </div>
-    )
   }
 
   return (

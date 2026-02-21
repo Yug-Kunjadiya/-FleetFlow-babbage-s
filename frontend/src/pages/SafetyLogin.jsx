@@ -4,26 +4,35 @@ import { useAuth } from '@/context/AuthContext'
 import { Button } from '@/components/ui/Button'
 import { Input, Label } from '@/components/ui/Input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Shield, Truck } from 'lucide-react'
+import { Shield, Truck, AlertCircle } from 'lucide-react'
 
 export default function SafetyLogin() {
   const [email, setEmail] = useState('safety@fleetflow.com')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
+  const [error, setError] = useState('')
+  const { login, logout } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+    setError('')
 
     const result = await login(email, password)
-    
-    setLoading(false)
-    
+
     if (result.success) {
+      if (result.user?.role !== 'Safety Officer') {
+        await logout()
+        setError(`This login is for Safety Officers only. Your account role is "${result.user?.role}". Please use the correct login page.`)
+        setLoading(false)
+        return
+      }
       navigate('/')
+    } else {
+      setError(result.message || 'Invalid email or password.')
     }
+    setLoading(false)
   }
 
   return (
@@ -68,6 +77,12 @@ export default function SafetyLogin() {
                 required
               />
             </div>
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{error}</span>
+              </div>
+            )}
             <Button
               type="submit"
               className="w-full h-12 text-lg bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700"

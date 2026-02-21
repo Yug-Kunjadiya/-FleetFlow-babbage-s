@@ -50,6 +50,10 @@ exports.register = async (req, res) => {
     // Generate token
     const token = generateToken(user._id);
 
+    // Get role-based permissions
+    const permissions = getRolePermissions(user.role);
+    const sidebarMenus = getRoleSidebarMenus(user.role);
+
     res.status(201).json({
       success: true,
       token,
@@ -58,7 +62,9 @@ exports.register = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role
-      }
+      },
+      permissions,
+      sidebarMenus
     });
   } catch (error) {
     res.status(500).json({

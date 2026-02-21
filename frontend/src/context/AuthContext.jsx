@@ -54,19 +54,30 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initAuth = async () => {
-      await new Promise(resolve => setTimeout(resolve, 100));
-      const token       = localStorage.getItem('token');
-      const storedUser  = localStorage.getItem('user');
-      const storedPerms = localStorage.getItem('permissions');
-      if (token && storedUser) {
-        try {
-          setUser(JSON.parse(storedUser));
-          setPermissions(storedPerms ? JSON.parse(storedPerms) : {});
-        } catch {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          localStorage.removeItem('permissions');
-        }
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+      try {
+        // Always verify token against backend — catches expired / tampered tokens
+        const res = await api.get('/auth/me');
+        const { data: userData, permissions: perms } = res.data;
+        const user = {
+          id: userData._id,
+          name: userData.name,
+          email: userData.email,
+          role: userData.role
+        };
+        localStorage.setItem('user',        JSON.stringify(user));
+        localStorage.setItem('permissions', JSON.stringify(perms || {}));
+        setUser(user);
+        setPermissions(perms || {});
+      } catch {
+        // Token is invalid or expired — clear everything
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('permissions');
       }
       setLoading(false);
     };
@@ -83,9 +94,27 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       setPermissions(perms || {});
       toast.success(`Welcome back, ${user.name}!`);
-      return { success: true };
+      return { success: true, user };
     } catch (error) {
       const message = error.response?.data?.message || 'Login failed';
+      toast.error(message);
+      return { success: false, message };
+    }
+  };
+
+  const register = async (name, email, password, role) => {
+    try {
+      const response = await api.post('/auth/register', { name, email, password, role });
+      const { token, user, permissions: perms } = response.data;
+      localStorage.setItem('token',       token);
+      localStorage.setItem('user',        JSON.stringify(user));
+      localStorage.setItem('permissions', JSON.stringify(perms || {}));
+      setUser(user);
+      setPermissions(perms || {});
+      toast.success(`Welcome to FleetFlow, ${user.name}!`);
+      return { success: true, user };
+    } catch (error) {
+      const message = error.response?.data?.message || 'Registration failed';
       toast.error(message);
       return { success: false, message };
     }
@@ -127,7 +156,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{
       user, permissions, loading,
-      login, logout, hasRole,
+      login, logout, register, hasRole,
       hasPermission, getSidebarMenus, isRouteAllowed,
     }}>
       {children}
