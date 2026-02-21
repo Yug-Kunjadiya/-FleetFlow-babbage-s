@@ -90,11 +90,14 @@ export default function Login() {
               })}
             </div>
 
-            <div className="mt-8 pt-6 border-t text-center">
-              <p className="text-sm text-gray-600 mb-3">Demo Credentials (all roles):</p>
-              <p className="text-xs text-gray-500">
-                Password: <span className="font-mono bg-gray-100 px-2 py-1 rounded">password123</span>
-              </p>
+            <div className="mt-8 pt-6 border-t text-center space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">Powered by FleetFlow</p>
+              <div className="flex items-center justify-center gap-6 text-xs text-gray-400">
+                <span className="flex items-center gap-1">🚛 Real-time Tracking</span>
+                <span className="flex items-center gap-1">📊 Smart Analytics</span>
+                <span className="flex items-center gap-1">🔒 Role-based Access</span>
+              </div>
+              <p className="text-xs text-gray-400">© 2026 FleetFlow · Built for modern fleet operations</p>
             </div>
           </CardContent>
         </Card>
