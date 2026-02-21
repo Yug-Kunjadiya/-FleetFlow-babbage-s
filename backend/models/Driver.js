@@ -29,7 +29,7 @@ const driverSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['On Duty', 'Off Duty', 'On Trip', 'Suspended'],
+    enum: ['On Duty', 'Off Duty', 'On Trip', 'Suspended', 'Under Review', 'High Risk'],
     default: 'Off Duty'
   },
   phone: {
@@ -61,6 +61,11 @@ const driverSchema = new mongoose.Schema({
   maintenanceIncidents: {
     type: Number,
     default: 0
+  },
+  reviewStatus: {
+    type: String,
+    enum: ['Normal', 'Under Review', 'High Risk'],
+    default: 'Normal'
   }
 }, {
   timestamps: true

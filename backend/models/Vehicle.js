@@ -65,6 +65,11 @@ const vehicleSchema = new mongoose.Schema({
   totalFuelCost: {
     type: Number,
     default: 0
+  },
+  reviewStatus: {
+    type: String,
+    enum: ['Normal', 'Under Review', 'High Risk'],
+    default: 'Normal'
   }
 }, {
   timestamps: true

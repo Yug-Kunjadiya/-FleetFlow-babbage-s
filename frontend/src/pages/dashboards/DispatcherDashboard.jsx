@@ -206,7 +206,7 @@ const DispatcherDashboard = () => {
                 recentTrips.map((trip) => (
                   <tr key={trip._id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {trip.origin}
+                      {trip.source || trip.origin || 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {trip.destination}

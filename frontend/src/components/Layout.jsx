@@ -44,11 +44,12 @@ export default function Layout() {
     navigation.find(item => item.href === location.pathname)?.name || 'Dashboard'
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
 
       {/* ── Sidebar ──────────────────────────────────────────── */}
       <aside className={`fixed inset-y-0 left-0 z-50 flex flex-col w-64
-        bg-gray-900 border-r border-gray-800
+        bg-gray-950 dark:bg-gray-950 border-r border-gray-800/60
+        shadow-xl shadow-black/20
         transition-transform duration-300 ease-in-out
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
@@ -123,10 +124,10 @@ export default function Layout() {
       )}
 
       {/* ── Main ─────────────────────────────────────────────── */}
-      <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : ''}`}>
+      <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 bg-gray-50 dark:bg-gray-900 ${sidebarOpen ? 'lg:ml-64' : ''}`}>
 
         {/* Top navbar */}
-        <header className="h-14 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800
+        <header className="h-14 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800
           flex items-center justify-between px-4 lg:px-6 flex-shrink-0 sticky top-0 z-30 shadow-sm">
 
           <div className="flex items-center gap-3">
@@ -178,7 +179,7 @@ export default function Layout() {
         </header>
 
         {/* Page */}
-        <main className="flex-1 p-4 lg:p-6 animate-fade-in dark:text-gray-100">
+        <main className="flex-1 p-4 lg:p-6 animate-fade-in text-gray-900 dark:text-gray-100">
           <Outlet />
         </main>
       </div>

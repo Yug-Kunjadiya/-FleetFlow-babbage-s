@@ -42,7 +42,7 @@ const SafetyDashboard = () => {
       const today = new Date();
       const thirtyDaysFromNow = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
       const licenseExpiry = allDrivers.filter(d => {
-        const expiryDate = new Date(d.licenseExpiry);
+        const expiryDate = new Date(d.licenseExpiryDate || d.licenseExpiry);
         return expiryDate <= thirtyDaysFromNow && expiryDate >= today;
       }).length;
       
@@ -248,7 +248,9 @@ const SafetyDashboard = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(driver.licenseExpiry).toLocaleDateString()}
+                      {(driver.licenseExpiryDate || driver.licenseExpiry)
+                        ? new Date(driver.licenseExpiryDate || driver.licenseExpiry).toLocaleDateString()
+                        : 'N/A'}
                     </td>
                   </tr>
                 ))

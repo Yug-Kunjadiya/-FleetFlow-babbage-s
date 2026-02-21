@@ -169,7 +169,7 @@ export default function Drivers() {
         <div className="flex items-center gap-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
           <Shield className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
           <p className="text-sm text-amber-800 dark:text-amber-300 font-medium">
-            Safety Officer mode â€” you can suspend drivers, update statuses, and flag ambiguous risks.
+            Safety Officer mode — you can suspend drivers, update statuses, and flag ambiguous risks.
           </p>
         </div>
       )}
@@ -271,7 +271,7 @@ export default function Drivers() {
                 <div className="font-medium dark:text-gray-200 text-right">Class {driver.licenseCategory}</div>
                 <div className="text-gray-500 dark:text-gray-400">Expiry</div>
                 <div className={`font-medium text-right ${driver.isLicenseExpired ? 'text-red-600' : 'dark:text-gray-200'}`}>
-                  {formatDate(driver.licenseExpiryDate)}{driver.isLicenseExpired && ' âš ï¸'}
+                  {formatDate(driver.licenseExpiryDate)}{driver.isLicenseExpired && ' ⚠️'}
                 </div>
                 <div className="text-gray-500 dark:text-gray-400">Safety Score</div>
                 <div className="text-right"><SafetyScoreBadge score={driver.safetyScore} /></div>
@@ -284,16 +284,7 @@ export default function Drivers() {
               </div>
 
               <div className="flex gap-1.5 flex-wrap">
-                {/* AI safety score update â€” Fleet Manager + Safety Officer */}
-                {(canEdit || isSafety) && (
-                  <Button size="sm" variant="ghost"
-                    onClick={() => updateSafetyScore(driver._id)}
-                    title="Recalculate safety score (AI)"
-                    className="text-xs gap-1 text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-900/20 px-2">
-                    <Shield className="w-3 h-3" />
-                    AI Score
-                  </Button>
-                )}
+
 
                 {/* Safety Officer: suspend toggle */}
                 {isSafety && (
