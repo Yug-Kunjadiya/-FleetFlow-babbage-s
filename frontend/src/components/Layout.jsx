@@ -136,7 +136,6 @@ export default function Layout() {
               <Menu className="w-5 h-5" />
             </button>
             <div className="hidden sm:flex items-center gap-2 text-sm">
-              <span className="text-gray-400 dark:text-gray-600 text-xs">/</span>
               <span className="font-semibold text-gray-800 dark:text-white">{currentPageName}</span>
             </div>
           </div>
