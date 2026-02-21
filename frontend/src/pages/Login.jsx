@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Settings, MapPin, Shield, DollarSign, Truck } from 'lucide-react'
 
@@ -96,6 +96,13 @@ export default function Login() {
                 <span className="flex items-center gap-1">🚛 Real-time Tracking</span>
                 <span className="flex items-center gap-1">📊 Smart Analytics</span>
                 <span className="flex items-center gap-1">🔒 Role-based Access</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 pt-1">
+                <span className="text-sm text-gray-500">New to FleetFlow?</span>
+                <Link to="/register"
+                  className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold px-5 py-2 rounded-full shadow hover:opacity-90 transition">
+                  Create Account →
+                </Link>
               </div>
               <p className="text-xs text-gray-400">© 2026 FleetFlow · Built for modern fleet operations</p>
             </div>

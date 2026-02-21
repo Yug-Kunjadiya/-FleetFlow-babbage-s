@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 
 // Auth pages
 import Login from './pages/Login'
+import Register from './pages/Register'
 import ManagerLogin from './pages/ManagerLogin'
 import DispatcherLogin from './pages/DispatcherLogin'
 import SafetyLogin from './pages/SafetyLogin'
@@ -80,6 +81,7 @@ function App() {
       <Routes>
         {/* Login pages — redirect to dashboard if already authenticated */}
         <Route path="/login"            element={<LoginRoute><Login /></LoginRoute>} />
+        <Route path="/register"         element={<LoginRoute><Register /></LoginRoute>} />
         <Route path="/login/manager"    element={<LoginRoute><ManagerLogin /></LoginRoute>} />
         <Route path="/login/dispatcher" element={<LoginRoute><DispatcherLogin /></LoginRoute>} />
         <Route path="/login/safety"     element={<LoginRoute><SafetyLogin /></LoginRoute>} />
