@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 import { useAuth } from './context/AuthContext'
 import Layout from './components/Layout'
 
@@ -78,6 +79,14 @@ function RoleDashboard() {
 function App() {
   return (
     <Router>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: { fontSize: '14px', maxWidth: '420px' },
+          error: { duration: 5000 }
+        }}
+      />
       <Routes>
         {/* Login pages — redirect to dashboard if already authenticated */}
         <Route path="/login"            element={<LoginRoute><Login /></LoginRoute>} />

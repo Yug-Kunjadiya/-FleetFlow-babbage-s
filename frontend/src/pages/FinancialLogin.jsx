@@ -1,36 +1,33 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 import { useAuth } from '@/context/AuthContext'
 import { Button } from '@/components/ui/Button'
 import { Input, Label } from '@/components/ui/Input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { DollarSign, Truck, AlertCircle } from 'lucide-react'
+import { DollarSign, Truck } from 'lucide-react'
 
 export default function FinancialLogin() {
   const [email, setEmail] = useState('financial@fleetflow.com')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
   const { login, logout } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    setError('')
 
     const result = await login(email, password)
 
     if (result.success) {
       if (result.user?.role !== 'Financial Analyst') {
         await logout()
-        setError(`This login is for Financial Analysts only. Your account role is "${result.user?.role}". Please use the correct login page.`)
+        toast.error(`This login is for Financial Analysts only. Your role is "${result.user?.role}".`)
         setLoading(false)
         return
       }
       navigate('/')
-    } else {
-      setError(result.message || 'Invalid email or password.')
     }
     setLoading(false)
   }
@@ -77,12 +74,6 @@ export default function FinancialLogin() {
                 required
               />
             </div>
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0" />
-                <span>{error}</span>
-              </div>
-            )}
             <Button
               type="submit"
               className="w-full h-12 text-lg bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700"
