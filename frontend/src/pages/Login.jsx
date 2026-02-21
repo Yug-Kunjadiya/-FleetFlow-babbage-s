@@ -1,6 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Settings, MapPin, Shield, DollarSign, Truck } from 'lucide-react'
+import { Settings, MapPin, Shield, DollarSign, Truck, BarChart3, Zap, Globe, ChevronRight, CheckCircle2 } from 'lucide-react'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -8,106 +7,184 @@ export default function Login() {
   const roles = [
     {
       name: 'Fleet Manager',
-      description: 'Complete fleet control and management',
+      description: 'Full fleet control, analytics & oversight',
       icon: Settings,
-      color: 'from-blue-600 to-indigo-600',
-      bgColor: 'bg-blue-50 hover:bg-blue-100',
-      iconBg: 'bg-blue-600',
+      gradient: 'from-blue-500 to-indigo-600',
+      ring: 'hover:ring-blue-400',
+      badge: 'bg-blue-500/10 text-blue-600 border-blue-200',
       path: '/login/manager'
     },
     {
       name: 'Dispatcher',
-      description: 'Trip planning and route optimization',
+      description: 'Trip planning, routing & driver assignment',
       icon: MapPin,
-      color: 'from-emerald-600 to-teal-600',
-      bgColor: 'bg-emerald-50 hover:bg-emerald-100',
-      iconBg: 'bg-emerald-600',
+      gradient: 'from-emerald-500 to-teal-600',
+      ring: 'hover:ring-emerald-400',
+      badge: 'bg-emerald-500/10 text-emerald-600 border-emerald-200',
       path: '/login/dispatcher'
     },
     {
       name: 'Safety Officer',
-      description: 'Compliance and safety monitoring',
+      description: 'Compliance monitoring & safety audits',
       icon: Shield,
-      color: 'from-orange-600 to-amber-600',
-      bgColor: 'bg-orange-50 hover:bg-orange-100',
-      iconBg: 'bg-orange-600',
+      gradient: 'from-orange-500 to-amber-600',
+      ring: 'hover:ring-orange-400',
+      badge: 'bg-orange-500/10 text-orange-600 border-orange-200',
       path: '/login/safety'
     },
     {
       name: 'Financial Analyst',
-      description: 'Financial reports and cost analysis',
+      description: 'Revenue tracking & cost optimization',
       icon: DollarSign,
-      color: 'from-purple-600 to-fuchsia-600',
-      bgColor: 'bg-purple-50 hover:bg-purple-100',
-      iconBg: 'bg-purple-600',
+      gradient: 'from-purple-500 to-fuchsia-600',
+      ring: 'hover:ring-purple-400',
+      badge: 'bg-purple-500/10 text-purple-600 border-purple-200',
       path: '/login/financial'
     }
   ]
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4">
-      <div className="w-full max-w-5xl">
-        <Card className="shadow-2xl">
-          <CardHeader className="space-y-4 text-center pb-8">
-            <div className="flex justify-center">
-              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 rounded-full shadow-lg">
-                <Truck className="w-16 h-16 text-white" />
-              </div>
-            </div>
-            <CardTitle className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              FleetFlow
-            </CardTitle>
-            <CardDescription className="text-xl">
-              Fleet & Logistics Management System
-            </CardDescription>
-            <p className="text-gray-600">Choose your role to continue</p>
-          </CardHeader>
-          <CardContent className="px-8 pb-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {roles.map((role) => {
-                const Icon = role.icon
-                return (
-                  <button
-                    key={role.name}
-                    onClick={() => navigate(role.path)}
-                    className={`${role.bgColor} border-2 border-gray-200 rounded-xl p-6 transition-all duration-200 transform hover:scale-105 hover:shadow-lg text-left`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className={`${role.iconBg} p-3 rounded-lg flex-shrink-0`}>
-                        <Icon className="w-8 h-8 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className={`text-xl font-bold mb-2 bg-gradient-to-r ${role.color} bg-clip-text text-transparent`}>
-                          {role.name}
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          {role.description}
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
+  const stats = [
+    { value: '99.9%', label: 'Uptime' },
+    { value: '50K+', label: 'Trips Tracked' },
+    { value: '24/7', label: 'Monitoring' },
+  ]
 
-            <div className="mt-8 pt-6 border-t text-center space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">Powered by FleetFlow</p>
-              <div className="flex items-center justify-center gap-6 text-xs text-gray-400">
-                <span className="flex items-center gap-1">🚛 Real-time Tracking</span>
-                <span className="flex items-center gap-1">📊 Smart Analytics</span>
-                <span className="flex items-center gap-1">🔒 Role-based Access</span>
-              </div>
-              <div className="flex items-center justify-center gap-2 pt-1">
-                <span className="text-sm text-gray-500">New to FleetFlow?</span>
-                <Link to="/register"
-                  className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold px-5 py-2 rounded-full shadow hover:opacity-90 transition">
-                  Create Account →
-                </Link>
-              </div>
-              <p className="text-xs text-gray-400">© 2026 FleetFlow · Built for modern fleet operations</p>
+  const features = [
+    'Real-time GPS vehicle tracking',
+    'AI-powered route optimization',
+    'Automated compliance reports',
+    'Instant alerts & notifications',
+  ]
+
+  return (
+    <div className="min-h-screen flex flex-col lg:flex-row">
+
+      {/* ── Left panel — dark brand hero ───────────────────── */}
+      <div className="hidden lg:flex lg:w-5/12 xl:w-2/5 flex-col justify-between
+        bg-gray-950 p-10 xl:p-14 relative overflow-hidden">
+
+        {/* Background glow blobs */}
+        <div className="absolute top-0 left-0 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
+
+        {/* Logo */}
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-700/40">
+              <Truck className="w-5 h-5 text-white" />
             </div>
-          </CardContent>
-        </Card>
+            <span className="text-white font-bold text-xl tracking-tight">FleetFlow</span>
+          </div>
+
+          <h1 className="text-4xl xl:text-5xl font-bold text-white leading-tight mb-4">
+            Manage your fleet<br />
+            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              smarter & faster
+            </span>
+          </h1>
+          <p className="text-gray-400 text-base leading-relaxed mb-10">
+            The all-in-one platform for modern fleet operations — from dispatch to compliance, analytics to cost control.
+          </p>
+
+          {/* Feature checklist */}
+          <ul className="space-y-3 mb-10">
+            {features.map(f => (
+              <li key={f} className="flex items-center gap-3 text-gray-300 text-sm">
+                <CheckCircle2 className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          {/* Stats row */}
+          <div className="flex gap-8">
+            {stats.map(s => (
+              <div key={s.label}>
+                <p className="text-2xl font-bold text-white">{s.value}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom badge */}
+        <div className="relative z-10 flex items-center gap-2 text-gray-600 text-xs">
+          <Globe className="w-3.5 h-3.5" />
+          <span>© 2026 FleetFlow · Built for modern fleet operations</span>
+        </div>
+      </div>
+
+      {/* ── Right panel — role selection ────────────────────── */}
+      <div className="flex-1 flex items-center justify-center bg-gray-50 p-6 sm:p-10">
+        <div className="w-full max-w-lg">
+
+          {/* Mobile logo */}
+          <div className="flex items-center justify-center gap-3 mb-8 lg:hidden">
+            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <Truck className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-gray-900 font-bold text-xl">FleetFlow</span>
+          </div>
+
+          {/* Heading */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back 👋</h2>
+            <p className="text-gray-500 text-base">Select your role to sign in to your workspace.</p>
+          </div>
+
+          {/* Role cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            {roles.map((role) => {
+              const Icon = role.icon
+              return (
+                <button
+                  key={role.name}
+                  onClick={() => navigate(role.path)}
+                  className={`group relative bg-white border border-gray-200 rounded-2xl p-5 text-left
+                    transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5
+                    ring-2 ring-transparent ${role.ring} focus:outline-none`}
+                >
+                  {/* Gradient icon */}
+                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${role.gradient}
+                    flex items-center justify-center mb-4 shadow-md`}>
+                    <Icon className="w-5 h-5 text-white" />
+                  </div>
+
+                  <p className="font-semibold text-gray-900 text-sm mb-1">{role.name}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{role.description}</p>
+
+                  {/* Arrow hint */}
+                  <ChevronRight className="absolute top-4 right-4 w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Divider + register */}
+          <div className="relative flex items-center gap-4 mb-6">
+            <div className="flex-1 h-px bg-gray-200" />
+            <span className="text-xs text-gray-400 font-medium">or</span>
+            <div className="flex-1 h-px bg-gray-200" />
+          </div>
+
+          <div className="flex items-center justify-center gap-2">
+            <span className="text-sm text-gray-500">Don't have an account?</span>
+            <Link
+              to="/register"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+            >
+              Create one for free
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Trust badges */}
+          <div className="mt-8 flex items-center justify-center gap-5 text-xs text-gray-400">
+            <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-yellow-400" />Fast & secure</span>
+            <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-green-400" />End-to-end encrypted</span>
+            <span className="flex items-center gap-1.5"><BarChart3 className="w-3.5 h-3.5 text-blue-400" />Live analytics</span>
+          </div>
+        </div>
       </div>
     </div>
   )
