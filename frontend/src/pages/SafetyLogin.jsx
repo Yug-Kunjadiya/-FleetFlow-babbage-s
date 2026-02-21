@@ -33,15 +33,15 @@ export default function SafetyLogin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-600 via-amber-600 to-yellow-600 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-500 via-cyan-500 to-sky-700 p-4">
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="space-y-4 text-center pb-6">
           <div className="flex justify-center">
-            <div className="bg-orange-600 p-4 rounded-full shadow-lg">
+            <div className="bg-sky-600 p-4 rounded-full shadow-lg">
               <Shield className="w-12 h-12 text-white" />
             </div>
           </div>
-          <CardTitle className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
+          <CardTitle className="text-4xl font-bold bg-gradient-to-r from-sky-600 to-cyan-600 bg-clip-text text-transparent">
             Safety Officer
           </CardTitle>
           <CardDescription className="text-base">
@@ -76,7 +76,7 @@ export default function SafetyLogin() {
             </div>
             <Button
               type="submit"
-              className="w-full h-12 text-lg bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700"
+              className="w-full h-12 text-lg bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700"
               disabled={loading}
             >
               {loading ? 'Logging in...' : 'Login as Safety Officer'}
@@ -84,16 +84,16 @@ export default function SafetyLogin() {
           </form>
 
           <div className="mt-6 pt-6 border-t">
-            <div className="flex items-center justify-center gap-2 mb-4 text-orange-600">
+            <div className="flex items-center justify-center gap-2 mb-4 text-sky-600">
               <Truck className="w-5 h-5" />
               <span className="font-semibold text-lg">FleetFlow</span>
             </div>
             <div className="flex flex-wrap gap-2 justify-center text-xs">
-              <a href="/login/manager" className="text-orange-600 hover:underline">Fleet Manager</a>
+              <a href="/login/manager" className="text-sky-600 hover:underline">Fleet Manager</a>
               <span className="text-gray-400">|</span>
-              <a href="/login/dispatcher" className="text-orange-600 hover:underline">Dispatcher</a>
+              <a href="/login/dispatcher" className="text-sky-600 hover:underline">Dispatcher</a>
               <span className="text-gray-400">|</span>
-              <a href="/login/financial" className="text-orange-600 hover:underline">Financial Analyst</a>
+              <a href="/login/financial" className="text-sky-600 hover:underline">Financial Analyst</a>
             </div>
           </div>
         </CardContent>

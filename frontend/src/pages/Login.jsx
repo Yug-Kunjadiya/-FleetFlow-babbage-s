@@ -27,9 +27,9 @@ export default function Login() {
       name: 'Safety Officer',
       description: 'Compliance monitoring & safety audits',
       icon: Shield,
-      gradient: 'from-orange-500 to-amber-600',
-      ring: 'hover:ring-orange-400',
-      badge: 'bg-orange-500/10 text-orange-600 border-orange-200',
+      gradient: 'from-sky-500 to-cyan-600',
+      ring: 'hover:ring-sky-400',
+      badge: 'bg-sky-500/10 text-sky-600 border-sky-200',
       path: '/login/safety'
     },
     {

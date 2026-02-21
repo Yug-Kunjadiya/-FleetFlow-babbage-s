@@ -12,14 +12,14 @@ const ICON_MAP = { LayoutDashboard, Truck, Users, Map, Fuel, Wrench, BarChart3 }
 const ROLE_STYLES = {
   'Fleet Manager':    'bg-blue-500/20 text-blue-300 border border-blue-500/30',
   'Dispatcher':       'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30',
-  'Safety Officer':   'bg-orange-500/20 text-orange-300 border border-orange-500/30',
+  'Safety Officer':   'bg-sky-500/20 text-sky-300 border border-sky-500/30',
   'Financial Analyst':'bg-purple-500/20 text-purple-300 border border-purple-500/30',
 }
 
 const ROLE_BADGE = {
   'Fleet Manager':    'bg-blue-100 text-blue-700',
   'Dispatcher':       'bg-emerald-100 text-emerald-700',
-  'Safety Officer':   'bg-orange-100 text-orange-700',
+  'Safety Officer':   'bg-sky-100 text-sky-700',
   'Financial Analyst':'bg-purple-100 text-purple-700',
 }
 
