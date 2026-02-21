@@ -31,10 +31,10 @@ const ROLES = [
     label: 'Safety Officer',
     description: 'Monitor driver compliance, license status and safety metrics',
     icon: Shield,
-    color: 'from-orange-600 to-amber-600',
-    bg: 'bg-orange-50 border-orange-200 hover:bg-orange-100',
-    selectedBg: 'bg-orange-600 border-orange-600',
-    iconBg: 'bg-orange-600',
+    color: 'from-sky-600 to-cyan-600',
+    bg: 'bg-sky-50 border-sky-200 hover:bg-sky-100',
+    selectedBg: 'bg-sky-600 border-sky-600',
+    iconBg: 'bg-sky-600',
     features: ['Driver safety scores', 'License expiry alerts', 'Suspend / review drivers', 'Maintenance tracking']
   },
   {
