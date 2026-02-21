@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom'
+﻿import { useNavigate, Link } from 'react-router-dom'
 import { Settings, MapPin, Shield, DollarSign, Truck, BarChart3, Zap, Globe, ChevronRight, CheckCircle2 } from 'lucide-react'
 
 export default function Login() {
@@ -59,15 +59,13 @@ export default function Login() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
 
-      {/* ── Left panel — dark brand hero ───────────────────── */}
+      {/* Left panel - dark brand hero */}
       <div className="hidden lg:flex lg:w-5/12 xl:w-2/5 flex-col justify-between
         bg-gray-950 p-10 xl:p-14 relative overflow-hidden">
 
-        {/* Background glow blobs */}
         <div className="absolute top-0 left-0 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
-        {/* Logo */}
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-12">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-700/40">
@@ -83,10 +81,9 @@ export default function Login() {
             </span>
           </h1>
           <p className="text-gray-400 text-base leading-relaxed mb-10">
-            The all-in-one platform for modern fleet operations — from dispatch to compliance, analytics to cost control.
+            The all-in-one platform for modern fleet operations from dispatch to compliance, analytics to cost control.
           </p>
 
-          {/* Feature checklist */}
           <ul className="space-y-3 mb-10">
             {features.map(f => (
               <li key={f} className="flex items-center gap-3 text-gray-300 text-sm">
@@ -96,7 +93,6 @@ export default function Login() {
             ))}
           </ul>
 
-          {/* Stats row */}
           <div className="flex gap-8">
             {stats.map(s => (
               <div key={s.label}>
@@ -107,18 +103,16 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Bottom badge */}
         <div className="relative z-10 flex items-center gap-2 text-gray-600 text-xs">
           <Globe className="w-3.5 h-3.5" />
-          <span>© 2026 FleetFlow · Built for modern fleet operations</span>
+          <span>2026 FleetFlow Built for modern fleet operations</span>
         </div>
       </div>
 
-      {/* ── Right panel — role selection ────────────────────── */}
+      {/* Right panel - role selection */}
       <div className="flex-1 flex items-center justify-center bg-gray-50 p-6 sm:p-10">
         <div className="w-full max-w-lg">
 
-          {/* Mobile logo */}
           <div className="flex items-center justify-center gap-3 mb-8 lg:hidden">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
               <Truck className="w-5 h-5 text-white" />
@@ -126,13 +120,11 @@ export default function Login() {
             <span className="text-gray-900 font-bold text-xl">FleetFlow</span>
           </div>
 
-          {/* Heading */}
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back 👋</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
             <p className="text-gray-500 text-base">Select your role to sign in to your workspace.</p>
           </div>
 
-          {/* Role cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             {roles.map((role) => {
               const Icon = role.icon
@@ -144,23 +136,18 @@ export default function Login() {
                     transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5
                     ring-2 ring-transparent ${role.ring} focus:outline-none`}
                 >
-                  {/* Gradient icon */}
                   <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${role.gradient}
                     flex items-center justify-center mb-4 shadow-md`}>
                     <Icon className="w-5 h-5 text-white" />
                   </div>
-
                   <p className="font-semibold text-gray-900 text-sm mb-1">{role.name}</p>
                   <p className="text-gray-500 text-xs leading-relaxed">{role.description}</p>
-
-                  {/* Arrow hint */}
                   <ChevronRight className="absolute top-4 right-4 w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors" />
                 </button>
               )
             })}
           </div>
 
-          {/* Divider + register */}
           <div className="relative flex items-center gap-4 mb-6">
             <div className="flex-1 h-px bg-gray-200" />
             <span className="text-xs text-gray-400 font-medium">or</span>
@@ -178,7 +165,6 @@ export default function Login() {
             </Link>
           </div>
 
-          {/* Trust badges */}
           <div className="mt-8 flex items-center justify-center gap-5 text-xs text-gray-400">
             <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-yellow-400" />Fast & secure</span>
             <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-green-400" />End-to-end encrypted</span>
