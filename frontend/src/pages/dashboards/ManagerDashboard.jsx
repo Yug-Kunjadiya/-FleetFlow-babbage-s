@@ -120,7 +120,12 @@ const ManagerDashboard = () => {
       setKpis(kpiRes.data.data);
       setFuelTrend(fuelRes.data.data?.length ? fuelRes.data.data : DEMO_FUEL);
       setRevenueExpenses(revRes.data.data?.length ? revRes.data.data : DEMO_REV_EXP);
-      setUtilization(utilRes.data.data?.length ? utilRes.data.data : DEMO_UTILIZATION);
+      // Normalize utilization data: API returns {date, utilizationRate}, chart expects {month, utilization}
+      const rawUtil = utilRes.data.data;
+      const normUtil = rawUtil?.length
+        ? rawUtil.map(r => ({ month: r.month ?? r.date ?? r._id, utilization: r.utilization ?? r.utilizationRate ?? 0 }))
+        : DEMO_UTILIZATION;
+      setUtilization(normUtil);
       setTopDrivers(drvRes.data.data || []);
       setExpenseBreakdown(expRes.data.data?.length ? expRes.data.data : DEMO_EXPENSE);
       setDemo(!revRes.data.data?.length && !utilRes.data.data?.length);

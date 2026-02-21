@@ -112,14 +112,12 @@ export default function Drivers() {
     }
   }
 
-  /** Safety Officer: toggle ambiguous risk flag */
-  const markAmbiguous = async (driver) => {
-    const next = driver.status === 'Under Review' ? 'High Risk'
-               : driver.status === 'High Risk'    ? 'Off Duty'
-               : 'Under Review'
+  /** Safety Officer: mark / clear Under Review */
+  const markReview = async (driver) => {
+    const next = driver.status === 'Under Review' ? 'Off Duty' : 'Under Review'
     try {
       await api.put(`/drivers/${driver._id}`, { status: next })
-      toast.success(`Driver flagged as "${next}"`)
+      toast.success(next === 'Under Review' ? 'Driver marked for review' : 'Review cleared')
       fetchDrivers()
     } catch (error) {
       toast.error('Failed to update driver status')
@@ -302,15 +300,17 @@ export default function Drivers() {
                   </Button>
                 )}
 
-                {/* Safety Officer: ambiguous risk marking */}
+                {/* Safety Officer: mark under review */}
                 {isSafety && (
                   <Button size="sm" variant="outline"
-                    onClick={() => markAmbiguous(driver)}
-                    className="text-xs gap-1 px-2 border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-700 dark:text-amber-400">
+                    onClick={() => markReview(driver)}
+                    className={`text-xs gap-1 px-2 ${
+                      driver.status === 'Under Review'
+                        ? 'border-green-300 text-green-700 hover:bg-green-50 dark:border-green-700 dark:text-green-400'
+                        : 'border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-700 dark:text-amber-400'
+                    }`}>
                     <AlertTriangle className="w-3 h-3" />
-                    {driver.status === 'Under Review' ? 'High Risk'
-                    : driver.status === 'High Risk'   ? 'Clear Flag'
-                    : 'Flag Review'}
+                    {driver.status === 'Under Review' ? 'Clear Review' : 'Mark Review'}
                   </Button>
                 )}
 
